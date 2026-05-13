@@ -1,6 +1,8 @@
 import { state } from '../core/state.js';
 import { ateliers } from '../data/ateliers.js';
 import { closeDialog, openDialog } from './dialog.js';
+import { renderMediaMarkup } from './media.js';
+import { hydrateMediaFrames } from './ui.js';
 
 function getReservationState() {
   return state.reservation;
@@ -110,6 +112,11 @@ export function renderAteliers() {
 
     return `
       <div class="atelier-card">
+        ${renderMediaMarkup({
+          wrapperClass: `atelier-cover ${atelier.type}`,
+          src: atelier.image,
+          alt: atelier.title,
+        })}
         <div class="atelier-header">
           <div class="atelier-date"><div class="day">${day}</div><div class="month">${month}</div></div>
           <span class="atelier-badge ${atelier.type === 'online' ? 'online' : 'offline'}">${atelier.type === 'online' ? 'En ligne' : 'Présentiel'}</span>
@@ -129,6 +136,8 @@ export function renderAteliers() {
         </div>
       </div>`;
   }).join('');
+
+  hydrateMediaFrames(grid);
 }
 
 export function openResv(id, trigger) {

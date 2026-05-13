@@ -17,7 +17,7 @@ import {
   toggleFavDetail,
   updateBadges,
 } from './modules/shop.js';
-import { initReviewsMarquee, initStaggeredAnimations } from './modules/ui.js';
+import { hydrateMediaFrames, initReviewsMarquee, initStaggeredAnimations } from './modules/ui.js';
 import {
   closeResv,
   confirmResv,
@@ -47,6 +47,7 @@ initWorkshopInteractions();
 initCreationModal();
 initDialogAccessibility();
 initReviewsMarquee();
+hydrateMediaFrames();
 initStaggeredAnimations();
 
 function getNumericData(element, key) {

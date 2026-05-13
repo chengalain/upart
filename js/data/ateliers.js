@@ -2,6 +2,7 @@ export const ateliers = [
   {
     id: 1,
     title: 'Atelier Tie-Dye : Explose les couleurs',
+    image: 'assets/images/workshops/atelier-tie-dye-explose-les-couleurs.jpg',
     desc: 'Viens apprendre les techniques de tie-dye et repars avec ta création unique. Tous les matériaux sont fournis.',
     price: 35,
     places: 12,
@@ -17,6 +18,7 @@ export const ateliers = [
   {
     id: 2,
     title: 'Broderie pour débutants',
+    image: 'assets/images/workshops/broderie-pour-debutants.jpg',
     desc: 'Un atelier en ligne pour apprendre les bases de la broderie. Kit envoyé chez toi avant la session.',
     price: 25,
     places: 20,
@@ -31,6 +33,7 @@ export const ateliers = [
   {
     id: 3,
     title: 'Transformer un jean en pièce unique',
+    image: 'assets/images/workshops/transformer-un-jean-en-piece-unique.jpg',
     desc: 'Apporte ton vieux jean et repars avec une création totalement customisée. Peinture, patches, découpes.',
     price: 45,
     places: 8,
@@ -45,6 +48,7 @@ export const ateliers = [
   {
     id: 4,
     title: 'Crochet : customise ton pull d\'été',
+    image: 'assets/images/workshops/crochet-customise-ton-pull-d-ete.jpg',
     desc: 'Session créative pour ajouter des touches au crochet sur tes pièces préférées. Niveau intermédiaire.',
     price: 20,
     places: 15,

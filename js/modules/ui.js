@@ -8,6 +8,28 @@ export function initReviewsMarquee() {
   track.innerHTML = cards + cards;
 }
 
+export function hydrateMediaFrames(root = document) {
+  root.querySelectorAll('[data-media-frame]').forEach((frame) => {
+    const image = frame.querySelector('[data-media-image]');
+    if (!(image instanceof HTMLImageElement) || image.dataset.mediaBound === 'true') {
+      return;
+    }
+
+    const markLoaded = () => frame.classList.add('is-loaded');
+    const markPending = () => frame.classList.remove('is-loaded');
+
+    image.dataset.mediaBound = 'true';
+    image.addEventListener('load', markLoaded);
+    image.addEventListener('error', markPending);
+
+    if (image.complete && image.naturalWidth > 0) {
+      markLoaded();
+    } else {
+      markPending();
+    }
+  });
+}
+
 export function initStaggeredAnimations() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

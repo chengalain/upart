@@ -1,6 +1,8 @@
 import { state } from '../core/state.js';
 import { fakeComments } from '../data/comments.js';
 import { closeDialog, openDialog } from './dialog.js';
+import { renderMediaMarkup } from './media.js';
+import { hydrateMediaFrames } from './ui.js';
 
 function getBackgroundClass(backgroundKey) {
   return `bg-${backgroundKey}`;
@@ -20,7 +22,12 @@ export function openCreation(element) {
   const modalImage = document.getElementById('modalImage');
   if (modalImage) {
     modalImage.className = `modal-image ${getBackgroundClass(dataset.bg || 'h1')}`;
-    modalImage.textContent = dataset.emoji || '';
+    modalImage.innerHTML = renderMediaMarkup({
+      wrapperClass: `modal-image-shell ${getBackgroundClass(dataset.bg || 'h1')}`,
+      src: dataset.image || '',
+      alt: dataset.title || 'Creation UpArt',
+    });
+    hydrateMediaFrames(modalImage);
   }
 
   const avatar = document.getElementById('modalAvatar');

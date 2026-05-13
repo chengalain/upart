@@ -1,5 +1,7 @@
 import { state } from '../core/state.js';
 import { products } from '../data/products.js';
+import { renderMediaMarkup } from './media.js';
+import { hydrateMediaFrames } from './ui.js';
 
 let showPageHandler = () => {};
 
@@ -9,6 +11,15 @@ export function setShopNavigator(handler) {
 
 function getBackgroundClass(backgroundKey) {
   return `bg-${backgroundKey}`;
+}
+
+function renderProductMedia(product, wrapperClass, compact = false) {
+  return renderMediaMarkup({
+    wrapperClass,
+    src: product.image,
+    alt: product.name,
+    compact,
+  });
 }
 
 function findProduct(productId) {
@@ -41,7 +52,7 @@ export function renderBoutique() {
 
     return `
       <div class="product-card" data-action="open-product" data-id="${product.id}" role="button" tabindex="0">
-        <div class="product-img ${product.bg}">${product.emoji}</div>
+        ${renderProductMedia(product, `product-img ${getBackgroundClass(product.bg)}`)}
         ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
         <button class="product-wishlist" type="button" data-action="toggle-fav" data-id="${product.id}">${isFavorite ? '♥' : '♡'}</button>
         <div class="product-body">
@@ -55,6 +66,8 @@ export function renderBoutique() {
         </div>
       </div>`;
   }).join('');
+
+  hydrateMediaFrames(grid);
 }
 
 export function openProduct(productId) {
@@ -69,9 +82,9 @@ export function openProduct(productId) {
 
   detail.innerHTML = `
     <div class="pd-gallery">
-      <div class="pd-main-img ${getBackgroundClass(product.bg)}">${product.emoji}</div>
+      ${renderProductMedia(product, `pd-main-img ${getBackgroundClass(product.bg)}`)}
       <div class="pd-thumbs">
-        <div class="pd-thumb active ${getBackgroundClass(product.bg)}">${product.emoji}</div>
+        ${renderProductMedia(product, `pd-thumb active ${getBackgroundClass(product.bg)}`, true)}
         <div class="pd-thumb pd-thumb-meta">📐</div>
         <div class="pd-thumb pd-thumb-meta">🏷️</div>
       </div>
@@ -100,6 +113,8 @@ export function openProduct(productId) {
         <button class="pd-btn-fav${isFavorite ? ' faved' : ''}" type="button" data-action="toggle-fav-detail" data-id="${product.id}">${isFavorite ? '♥' : '♡'}</button>
       </div>
     </div>`;
+
+  hydrateMediaFrames(detail);
 
   showPageHandler('product');
 }
@@ -155,7 +170,7 @@ export function renderCart() {
 
   content.innerHTML = items.map((product) => `
       <div class="cart-item">
-        <div class="cart-item-img ${getBackgroundClass(product.bg)}">${product.emoji}</div>
+        ${renderProductMedia(product, `cart-item-img ${getBackgroundClass(product.bg)}`, true)}
         <div class="cart-item-info">
           <h3>${product.name}</h3>
           <p>${product.technique}</p>
@@ -168,6 +183,8 @@ export function renderCart() {
         <span class="cart-total-price">${total}€</span>
       </div>
       <button class="cart-checkout">Commander</button>`;
+
+  hydrateMediaFrames(content);
 }
 
 export function toggleFav(event, productId) {
@@ -218,7 +235,7 @@ export function renderFavorites() {
 
   content.innerHTML = items.map((product) => `
       <div class="fav-item">
-        <div class="fav-item-img ${getBackgroundClass(product.bg)}">${product.emoji}</div>
+        ${renderProductMedia(product, `fav-item-img ${getBackgroundClass(product.bg)}`, true)}
         <div class="fav-item-info" data-action="open-product" data-id="${product.id}" role="button" tabindex="0">
           <h3>${product.name}</h3>
           <p>${product.technique}</p>
@@ -227,6 +244,8 @@ export function renderFavorites() {
         <button class="fav-item-cartbtn" type="button" data-action="add-to-cart" data-id="${product.id}">Ajouter au panier</button>
         <button class="fav-item-remove" type="button" data-action="remove-from-fav" data-id="${product.id}">✕</button>
       </div>`).join('');
+
+  hydrateMediaFrames(content);
 }
 
 export function initBoutiqueFilters() {
