@@ -9,31 +9,37 @@
 </head>
 <body>
 
+<a class="skip-link" href="#mainContent">Aller au contenu principal</a>
+
 <!-- ============ NAVIGATION ============ -->
-<nav id="navbar">
-  <div class="nav-logo" data-page="accueil" role="button" tabindex="0">Up<span>Art</span></div>
+<nav id="navbar" aria-label="Navigation principale">
+  <button class="nav-logo" type="button" data-page="accueil" aria-label="Aller à l'accueil UpArt">Up<span>Art</span></button>
   <div class="nav-links" id="navLinks">
-    <a href="#" class="active" data-page="accueil">Accueil</a>
-    <a href="#" data-page="tutoriels">Tutoriels</a>
-    <a href="#" data-page="ateliers">Ateliers</a>
-    <a href="#" data-page="creations">Créations</a>
-    <a href="#" data-page="boutique">Boutique</a>
-    <a href="#" class="nav-link-highlight" data-page="contact">Contact</a>
+    <a href="#accueil" class="active" data-page="accueil" aria-current="page">Accueil</a>
+    <a href="#tutoriels" data-page="tutoriels">Tutoriels</a>
+    <a href="#ateliers" data-page="ateliers">Ateliers</a>
+    <a href="#creations" data-page="creations">Créations</a>
+    <a href="#boutique" data-page="boutique">Boutique</a>
+    <a href="#contact" class="nav-link-highlight" data-page="contact">Contact</a>
   </div>
   <div class="nav-icons">
-    <button class="nav-icon-btn" type="button" data-page="favoris" title="Favoris">
+    <button class="nav-icon-btn" type="button" data-page="favoris" title="Favoris" aria-label="Voir les favoris">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       <span class="nav-badge" id="favBadge">0</span>
     </button>
-    <button class="nav-icon-btn" type="button" data-page="panier" title="Panier">
+    <button class="nav-icon-btn" type="button" data-page="panier" title="Panier" aria-label="Voir le panier">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       <span class="nav-badge" id="cartBadge">0</span>
     </button>
   </div>
-  <button class="hamburger" type="button" data-action="toggle-menu">
+  <button class="hamburger" type="button" data-action="toggle-menu" aria-expanded="false" aria-controls="navLinks" aria-label="Ouvrir le menu principal">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<p id="pageAnnouncer" class="visually-hidden" aria-live="polite" aria-atomic="true"></p>
+
+<main id="mainContent" tabindex="-1">
 
 <!-- ============ ACCUEIL ============ -->
 <section id="page-accueil" class="hero section-visible">
@@ -141,7 +147,7 @@
 </div>
 
 <!-- ============ TUTORIELS ============ -->
-<section id="page-tutoriels" class="tutos-page section-hidden">
+<section id="page-tutoriels" class="tutos-page section-hidden" aria-hidden="true">
   <div class="content-shell">
     <div class="section-tag">📚 Apprendre</div>
     <h2 class="section-title">Apprends à transformer tes vêtements</h2>
@@ -230,7 +236,7 @@
 </section>
 
 <!-- ============ ATELIERS ============ -->
-<section id="page-ateliers" class="ateliers-page section-hidden">
+<section id="page-ateliers" class="ateliers-page section-hidden" aria-hidden="true">
   <div class="content-shell">
     <div class="section-tag">🛠️ Pratiquer</div>
     <h2 class="section-title">Participe à nos ateliers upcycling</h2>
@@ -342,7 +348,7 @@
 </div>
 
 <!-- ============ CREATIONS ============ -->
-<section id="page-creations" class="creations-page section-hidden">
+<section id="page-creations" class="creations-page section-hidden" aria-hidden="true">
   <div class="content-shell-spaced">
     <div class="section-tag">✨ Inspiration</div>
     <h2 class="section-title">Les créations de la communauté</h2>
@@ -416,7 +422,7 @@
 </section>
 
 <!-- ============ BOUTIQUE ============ -->
-<section id="page-boutique" class="boutique-page section-hidden">
+<section id="page-boutique" class="boutique-page section-hidden" aria-hidden="true">
   <div class="content-shell">
     <div class="section-tag">🛍️ Shopper</div>
     <h2 class="section-title">Pièces uniques upcyclées</h2>
@@ -434,12 +440,12 @@
 </section>
 
 <!-- ============ PRODUCT DETAIL ============ -->
-<section id="page-product" class="product-detail-page section-hidden">
+<section id="page-product" class="product-detail-page section-hidden" aria-hidden="true">
   <div class="product-detail-container" id="productDetail"></div>
 </section>
 
 <!-- ============ PANIER ============ -->
-<section id="page-panier" class="cart-page section-hidden">
+<section id="page-panier" class="cart-page section-hidden" aria-hidden="true">
   <div class="cart-container">
     <div class="section-tag">🛒 Panier</div>
     <h2 class="section-title">Mon panier</h2>
@@ -448,7 +454,7 @@
 </section>
 
 <!-- ============ FAVORIS ============ -->
-<section id="page-favoris" class="fav-page section-hidden">
+<section id="page-favoris" class="fav-page section-hidden" aria-hidden="true">
   <div class="fav-container">
     <div class="section-tag">♥ Favoris</div>
     <h2 class="section-title">Mes favoris</h2>
@@ -457,7 +463,7 @@
 </section>
 
 <!-- ============ CONTACT ============ -->
-<section id="page-contact" class="contact-page section-hidden">
+<section id="page-contact" class="contact-page section-hidden" aria-hidden="true">
   <div class="contact-container">
     <div class="contact-left">
       <div class="section-tag">💬 Contact</div>
@@ -509,6 +515,8 @@
     </div>
   </div>
 </section>
+
+    </main>
 
 <!-- ============ CREATION MODAL ============ -->
 <div id="creationModal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
@@ -563,10 +571,10 @@
     </div>
     <div class="footer-col">
       <h4>Explorer</h4>
-      <a href="#" data-page="tutoriels">Tutoriels</a>
-      <a href="#" data-page="ateliers">Ateliers</a>
-      <a href="#" data-page="creations">Créations</a>
-      <a href="#" data-page="boutique">Boutique</a>
+      <a href="#tutoriels" data-page="tutoriels">Tutoriels</a>
+      <a href="#ateliers" data-page="ateliers">Ateliers</a>
+      <a href="#creations" data-page="creations">Créations</a>
+      <a href="#boutique" data-page="boutique">Boutique</a>
     </div>
     <div class="footer-col">
       <h4>Communauté</h4>
@@ -578,7 +586,7 @@
     <div class="footer-col">
       <h4>Infos</h4>
       <a href="#">À propos</a>
-      <a href="#" data-page="contact">Contactez-nous</a>
+      <a href="#contact" data-page="contact">Contactez-nous</a>
       <a href="#">CGV</a>
       <a href="#">Mentions légales</a>
     </div>

@@ -9,7 +9,26 @@ nav {
   transition: var(--transition);
 }
 nav.scrolled { padding: 12px 48px; background: rgba(245,245,245,0.95); }
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 200;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--text);
+  color: white;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 16px;
+}
 .nav-logo {
+  border: none;
+  background: transparent;
   font-family: 'Playfair Display', serif;
   font-size: 1.6rem; font-weight: 700; color: var(--text);
   letter-spacing: -0.5px; cursor: pointer;
@@ -28,6 +47,13 @@ nav.scrolled { padding: 12px 48px; background: rgba(245,245,245,0.95); }
 .nav-links a:hover::after { width: 100%; }
 .nav-links a.active { color: var(--accent); }
 .nav-links a.active::after { width: 100%; }
+.nav-logo:focus-visible,
+.nav-links a:focus-visible,
+.nav-icon-btn:focus-visible,
+.hamburger:focus-visible {
+  outline: 3px solid rgba(224,98,122,0.35);
+  outline-offset: 4px;
+}
 .nav-icons { display: flex; gap: 8px; align-items: center; }
 .nav-icon-btn {
   position: relative; width: 40px; height: 40px; border-radius: 50%;
