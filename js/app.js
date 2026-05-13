@@ -1,4 +1,5 @@
 import { addComment, closeCreation, initCreationModal, openCreation, toggleModalLike } from './modules/creations.js';
+import { initDialogAccessibility } from './modules/dialog.js';
 import { submitContact, submitNewsletter } from './modules/forms.js';
 import { configureNavigation, initNavigation, showPage, toggleMenu } from './modules/navigation.js';
 import {
@@ -44,6 +45,7 @@ initNavigation();
 initBoutiqueFilters();
 initWorkshopInteractions();
 initCreationModal();
+initDialogAccessibility();
 initReviewsMarquee();
 initStaggeredAnimations();
 
@@ -93,7 +95,7 @@ function initDelegatedInteractions() {
         submitContact();
         break;
       case 'open-resv':
-        openResv(getNumericData(trigger, 'id'));
+        openResv(getNumericData(trigger, 'id'), trigger);
         break;
       case 'close-resv':
         closeResv(event, trigger.dataset.force === 'true');

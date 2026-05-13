@@ -56,10 +56,24 @@
   display: flex; align-items: center; justify-content: space-between;
   padding: 16px 20px; border-radius: var(--radius-sm);
   border: 2px solid rgba(26,26,26,0.08); background: var(--bg);
-  cursor: pointer; transition: var(--transition);
+  cursor: pointer; transition: var(--transition); width: 100%;
+  font-family: inherit; color: var(--text); text-align: left;
 }
 .resv-date-option:hover { border-color: var(--accent); }
 .resv-date-option.selected { border-color: var(--accent); background: rgba(224,98,122,0.05); }
+.resv-date-option:focus-visible,
+.resv-person-btn:focus-visible,
+.resv-login-btn:focus-visible,
+.resv-back:focus-visible,
+.resv-confirm-btn:focus-visible,
+.modal-close:focus-visible,
+.modal-like-btn:focus-visible,
+.modal-share-btn:focus-visible,
+.modal-comment-input button:focus-visible,
+.modal-comment-input input:focus-visible {
+  outline: 3px solid rgba(224,98,122,0.35);
+  outline-offset: 3px;
+}
 .resv-date-left { display: flex; align-items: center; gap: 14px; }
 .resv-date-icon {
   width: 44px; height: 44px; border-radius: var(--radius-sm);

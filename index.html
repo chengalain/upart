@@ -240,38 +240,40 @@
 </section>
 
 <!-- ============ RESERVATION MODAL ============ -->
-<div id="resvModal" class="modal-overlay">
-  <div class="resv-container">
-    <button class="modal-close" type="button" data-action="close-resv" data-force="true">✕</button>
+<div id="resvModal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="resvDialogTitle" aria-describedby="resvDialogDesc">
+  <div class="resv-container" tabindex="-1">
+    <h2 id="resvDialogTitle" class="visually-hidden">Réserver un atelier</h2>
+    <p id="resvDialogDesc" class="visually-hidden">Fenêtre de réservation en plusieurs étapes pour choisir le nombre de participants, la date et confirmer tes informations.</p>
+    <button class="modal-close" type="button" data-action="close-resv" data-force="true" aria-label="Fermer la fenêtre de réservation">✕</button>
 
     <!-- Progress bar -->
     <div class="resv-progress">
       <div class="resv-progress-bar" id="resvProgressBar"></div>
     </div>
     <div class="resv-steps-indicator">
-      <span class="resv-step-dot active" data-step="1">1</span>
+      <span class="resv-step-dot active" data-step="1" aria-current="step">1</span>
       <span class="resv-step-dot" data-step="2">2</span>
       <span class="resv-step-dot" data-step="3">3</span>
       <span class="resv-step-dot" data-step="4">4</span>
     </div>
 
     <!-- Step 1: Nombre de personnes -->
-    <div class="resv-step" id="resvStep1">
+    <div class="resv-step" id="resvStep1" aria-hidden="false">
       <div class="resv-step-header">
         <h3>Combien de participants ?</h3>
         <p>Choisis le nombre de places à réserver.</p>
       </div>
       <div class="resv-persons" id="resvPersons">
-        <button class="resv-person-btn" type="button" data-action="select-persons" data-value="1">1<small>personne</small></button>
-        <button class="resv-person-btn" type="button" data-action="select-persons" data-value="2">2<small>personnes</small></button>
-        <button class="resv-person-btn" type="button" data-action="select-persons" data-value="3">3<small>personnes</small></button>
-        <button class="resv-person-btn" type="button" data-action="select-persons" data-value="4">4<small>personnes</small></button>
-        <button class="resv-person-btn" type="button" data-action="select-persons" data-value="5">5<small>personnes</small></button>
+        <button class="resv-person-btn" type="button" data-action="select-persons" data-value="1" aria-pressed="false">1<small>personne</small></button>
+        <button class="resv-person-btn" type="button" data-action="select-persons" data-value="2" aria-pressed="false">2<small>personnes</small></button>
+        <button class="resv-person-btn" type="button" data-action="select-persons" data-value="3" aria-pressed="false">3<small>personnes</small></button>
+        <button class="resv-person-btn" type="button" data-action="select-persons" data-value="4" aria-pressed="false">4<small>personnes</small></button>
+        <button class="resv-person-btn" type="button" data-action="select-persons" data-value="5" aria-pressed="false">5<small>personnes</small></button>
       </div>
     </div>
 
     <!-- Step 2: Date -->
-    <div class="resv-step is-hidden" id="resvStep2">
+    <div class="resv-step is-hidden" id="resvStep2" aria-hidden="true">
       <div class="resv-step-header">
         <h3>Choisis ta date</h3>
         <p>Sélectionne le créneau qui te convient.</p>
@@ -283,7 +285,7 @@
     </div>
 
     <!-- Step 3: Infos -->
-    <div class="resv-step is-hidden" id="resvStep3">
+    <div class="resv-step is-hidden" id="resvStep3" aria-hidden="true">
       <div class="resv-step-header">
         <h3>Tes informations</h3>
         <p>Pour confirmer ta réservation.</p>
@@ -307,7 +309,7 @@
           <input type="tel" id="resvPhone" placeholder="06 12 34 56 78">
         </div>
       </div>
-      <p id="resvFormMsg" class="resv-form-message"></p>
+      <p id="resvFormMsg" class="resv-form-message" aria-live="polite"></p>
       <div class="resv-nav-btns">
         <button class="resv-back" type="button" data-action="go-resv-step" data-step="2">← Retour</button>
         <button class="btn-primary" type="button" data-action="go-resv-step" data-step="4">Continuer</button>
@@ -315,7 +317,7 @@
     </div>
 
     <!-- Step 4: Récap -->
-    <div class="resv-step is-hidden" id="resvStep4">
+    <div class="resv-step is-hidden" id="resvStep4" aria-hidden="true">
       <div class="resv-step-header">
         <h3>Récapitulatif</h3>
         <p>Vérifie ta réservation avant de confirmer.</p>
@@ -328,7 +330,7 @@
     </div>
 
     <!-- Confirmation -->
-    <div class="resv-step is-hidden" id="resvStepDone">
+    <div class="resv-step is-hidden" id="resvStepDone" aria-hidden="true">
       <div class="resv-done">
         <div class="resv-done-icon">✓</div>
         <h3>Réservation confirmée !</h3>
@@ -509,9 +511,9 @@
 </section>
 
 <!-- ============ CREATION MODAL ============ -->
-<div id="creationModal" class="modal-overlay">
-  <div class="modal-container">
-    <button class="modal-close" type="button" data-action="close-creation" data-force="true">✕</button>
+<div id="creationModal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+  <div class="modal-container" tabindex="-1">
+    <button class="modal-close" type="button" data-action="close-creation" data-force="true" aria-label="Fermer la fenêtre de création">✕</button>
     <div class="modal-left">
       <div id="modalImage" class="modal-image"></div>
     </div>
@@ -534,15 +536,16 @@
         </div>
       </div>
       <div class="modal-actions">
-        <button id="modalLikeBtn" class="modal-like-btn" type="button" data-action="toggle-modal-like">
+        <button id="modalLikeBtn" class="modal-like-btn" type="button" data-action="toggle-modal-like" aria-pressed="false">
           <span id="modalHeart">♡</span> <span id="modalLikes"></span>
         </button>
-        <button class="modal-share-btn" type="button">↗ Partager</button>
+        <button class="modal-share-btn" type="button" aria-label="Partager cette création">↗ Partager</button>
       </div>
       <div class="modal-comments-section">
         <h4 class="modal-comments-title">Commentaires</h4>
         <div id="modalComments" class="modal-comments-list"></div>
         <div class="modal-comment-input">
+          <label for="commentInput" class="visually-hidden">Ajouter un commentaire</label>
           <input type="text" id="commentInput" placeholder="Ajouter un commentaire...">
           <button type="button" data-action="add-comment">Envoyer</button>
         </div>

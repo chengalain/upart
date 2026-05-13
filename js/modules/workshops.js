@@ -1,5 +1,6 @@
 import { state } from '../core/state.js';
 import { ateliers } from '../data/ateliers.js';
+import { closeDialog, openDialog } from './dialog.js';
 
 function getReservationState() {
   return state.reservation;
@@ -32,12 +33,14 @@ function setReservationStepVisibility(activeStep, showDone = false) {
     const stepElement = document.getElementById(`resvStep${index}`);
     if (stepElement) {
       stepElement.classList.toggle('is-hidden', index !== activeStep);
+      stepElement.setAttribute('aria-hidden', String(index !== activeStep));
     }
   }
 
   const doneElement = document.getElementById('resvStepDone');
   if (doneElement) {
     doneElement.classList.toggle('is-hidden', !showDone);
+    doneElement.setAttribute('aria-hidden', String(!showDone));
   }
 }
 
@@ -55,7 +58,7 @@ function renderResvDates() {
     const isSelected = reservation.date === index ? ' selected' : '';
 
     return `
-      <div class="resv-date-option${isSelected}" data-action="select-date" data-index="${index}" role="button" tabindex="0">
+      <button class="resv-date-option${isSelected}" type="button" data-action="select-date" data-index="${index}" aria-pressed="${reservation.date === index}">
         <div class="resv-date-left">
           <div class="resv-date-icon">📅</div>
           <div class="resv-date-info">
@@ -64,7 +67,7 @@ function renderResvDates() {
           </div>
         </div>
         <span class="resv-date-places${isLow ? ' low' : ''}">${isLow ? '🔥 ' : ''}${date.left} places</span>
-      </div>`;
+      </button>`;
   }).join('');
 }
 
@@ -128,7 +131,7 @@ export function renderAteliers() {
   }).join('');
 }
 
-export function openResv(id) {
+export function openResv(id, trigger) {
   const reservation = getReservationState();
   reservation.atelier = ateliers.find((atelier) => atelier.id === id) || null;
 
@@ -159,8 +162,12 @@ export function openResv(id) {
   });
 
   goResvStep(1);
-  document.getElementById('resvModal')?.classList.add('open');
+  const modal = document.getElementById('resvModal');
+  modal?.classList.add('open');
   setModalScrollLock(true);
+  if (modal) {
+    openDialog(modal, { trigger, initialFocusSelector: '[data-action="close-resv"]' });
+  }
 }
 
 export function closeResv(event, force) {
@@ -172,6 +179,7 @@ export function closeResv(event, force) {
   if (force || (event && event.target === modal)) {
     modal.classList.remove('open');
     setModalScrollLock(false);
+    closeDialog(modal);
   }
 }
 
@@ -211,9 +219,11 @@ export function goResvStep(step) {
   document.querySelectorAll('.resv-step-dot').forEach((dot) => {
     const dotStep = Number(dot.dataset.step);
     dot.classList.remove('active', 'done');
+    dot.removeAttribute('aria-current');
 
     if (dotStep === step) {
       dot.classList.add('active');
+      dot.setAttribute('aria-current', 'step');
     } else if (dotStep < step) {
       dot.classList.add('done');
     }
@@ -234,6 +244,7 @@ export function selectPersons(count) {
 
   document.querySelectorAll('.resv-person-btn').forEach((button, index) => {
     button.classList.toggle('selected', index + 1 === count);
+    button.setAttribute('aria-pressed', String(index + 1 === count));
   });
 
   window.setTimeout(() => goResvStep(2), 300);
@@ -268,7 +279,10 @@ export function fakeLogin() {
 export function confirmResv() {
   setReservationStepVisibility(null, true);
   updateReservationProgress(4, { complete: true });
-  document.querySelectorAll('.resv-step-dot').forEach((dot) => dot.classList.add('done'));
+  document.querySelectorAll('.resv-step-dot').forEach((dot) => {
+    dot.classList.add('done');
+    dot.removeAttribute('aria-current');
+  });
 }
 
 export function initWorkshopInteractions() {

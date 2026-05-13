@@ -1,5 +1,6 @@
 import { state } from '../core/state.js';
 import { fakeComments } from '../data/comments.js';
+import { closeDialog, openDialog } from './dialog.js';
 
 function getBackgroundClass(backgroundKey) {
   return `bg-${backgroundKey}`;
@@ -53,7 +54,10 @@ export function openCreation(element) {
   if (likes) {
     likes.textContent = `${state.creationModal.likes} j'aime`;
   }
-  likeButton?.classList.remove('liked');
+  if (likeButton) {
+    likeButton.classList.remove('liked');
+    likeButton.setAttribute('aria-pressed', 'false');
+  }
 
   const commentsList = document.getElementById('modalComments');
   if (commentsList) {
@@ -73,8 +77,12 @@ export function openCreation(element) {
     commentInput.value = '';
   }
 
-  document.getElementById('creationModal')?.classList.add('open');
+  const modal = document.getElementById('creationModal');
+  modal?.classList.add('open');
   setModalScrollLock(true);
+  if (modal) {
+    openDialog(modal, { trigger: element, initialFocusSelector: '[data-action="close-creation"]' });
+  }
 }
 
 export function closeCreation(event, force) {
@@ -86,6 +94,7 @@ export function closeCreation(event, force) {
   if (force || event?.target === modal) {
     modal.classList.remove('open');
     setModalScrollLock(false);
+    closeDialog(modal);
   }
 }
 
@@ -107,7 +116,10 @@ export function toggleModalLike(event) {
     likes.textContent = `${state.creationModal.likes} j'aime`;
   }
 
-  button?.classList.toggle('liked', state.creationModal.liked);
+  if (button) {
+    button.classList.toggle('liked', state.creationModal.liked);
+    button.setAttribute('aria-pressed', String(state.creationModal.liked));
+  }
 }
 
 export function addComment() {
