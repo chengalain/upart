@@ -237,4 +237,6 @@
   margin-top: 16px; font-size: 0.85rem; text-align: center; min-height: 20px;
   color: var(--green);
 }
+.contact-msg.is-error { color: var(--accent); }
+.contact-msg.is-success { color: var(--green); }
 

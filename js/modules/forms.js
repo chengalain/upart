@@ -1,3 +1,9 @@
+function setFeedbackState(element, state, text) {
+  element.classList.remove('is-error', 'is-success');
+  element.classList.add(state === 'error' ? 'is-error' : 'is-success');
+  element.textContent = text;
+}
+
 export function submitNewsletter() {
   const emailField = document.getElementById('newsletterEmail');
   const message = document.getElementById('newsletterMsg');
@@ -8,13 +14,11 @@ export function submitNewsletter() {
   }
 
   if (!email || !email.includes('@')) {
-    message.style.color = '#E8A58C';
-    message.textContent = "Merci d'entrer une adresse email valide.";
+    setFeedbackState(message, 'error', "Merci d'entrer une adresse email valide.");
     return;
   }
 
-  message.style.color = '#A8C5AB';
-  message.textContent = '✓ Merci ! Tu es bien inscrit(e) à la newsletter.';
+  setFeedbackState(message, 'success', '✓ Merci ! Tu es bien inscrit(e) à la newsletter.');
   emailField.value = '';
 }
 
@@ -35,19 +39,16 @@ export function submitContact() {
   }
 
   if (!name || !email || !subject || !message) {
-    feedback.style.color = '#E0627A';
-    feedback.textContent = 'Merci de remplir tous les champs.';
+    setFeedbackState(feedback, 'error', 'Merci de remplir tous les champs.');
     return;
   }
 
   if (!email.includes('@')) {
-    feedback.style.color = '#E0627A';
-    feedback.textContent = 'Adresse email invalide.';
+    setFeedbackState(feedback, 'error', 'Adresse email invalide.');
     return;
   }
 
-  feedback.style.color = '#5A7A5E';
-  feedback.textContent = '✓ Message envoyé avec succès ! On te répond très vite.';
+  setFeedbackState(feedback, 'success', '✓ Message envoyé avec succès ! On te répond très vite.');
   nameField.value = '';
   emailField.value = '';
   subjectField.value = '';

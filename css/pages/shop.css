@@ -54,6 +54,12 @@
   font-family: inherit; border: 2px solid var(--text); background: transparent; color: var(--text);
 }
 .btn-cart:hover { background: var(--text); color: white; }
+.btn-cart.is-added,
+.pd-btn-cart.is-added,
+.fav-item-cartbtn.is-added {
+  background: var(--text);
+  color: white;
+}
 
 
 /* ============ PRODUCT DETAIL ============ */

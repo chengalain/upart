@@ -121,17 +121,13 @@ export function addToCart(event, productId) {
     const button = event?.target;
     if (button instanceof HTMLElement) {
       const originalText = button.textContent;
-      const originalBackground = button.style.background;
-      const originalColor = button.style.color;
 
       button.textContent = '✓ Ajouté';
-      button.style.background = 'var(--text)';
-      button.style.color = 'white';
+      button.classList.add('is-added');
 
       window.setTimeout(() => {
         button.textContent = originalText || 'Ajouter au panier';
-        button.style.background = originalBackground;
-        button.style.color = originalColor;
+        button.classList.remove('is-added');
       }, 1500);
     }
   }

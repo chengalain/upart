@@ -5,6 +5,10 @@ function getBackgroundClass(backgroundKey) {
   return `bg-${backgroundKey}`;
 }
 
+function setModalScrollLock(isLocked) {
+  document.body.classList.toggle('modal-open', isLocked);
+}
+
 export function openCreation(element) {
   const { dataset } = element;
 
@@ -70,7 +74,7 @@ export function openCreation(element) {
   }
 
   document.getElementById('creationModal')?.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  setModalScrollLock(true);
 }
 
 export function closeCreation(event, force) {
@@ -81,7 +85,7 @@ export function closeCreation(event, force) {
 
   if (force || event?.target === modal) {
     modal.classList.remove('open');
-    document.body.style.overflow = '';
+    setModalScrollLock(false);
   }
 }
 

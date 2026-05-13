@@ -33,6 +33,10 @@
   display: none;
 }
 
+.modal-open {
+  overflow: hidden;
+}
+
 .resv-form-message {
   color: #E0627A;
   font-size: 0.82rem;

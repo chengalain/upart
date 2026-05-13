@@ -12,6 +12,11 @@
   height: 100%; background: var(--accent); width: 25%;
   transition: width 0.4s cubic-bezier(0.4,0,0.2,1); border-radius: 0 4px 4px 0;
 }
+.resv-progress-bar.step-1 { width: 25%; }
+.resv-progress-bar.step-2 { width: 50%; }
+.resv-progress-bar.step-3 { width: 75%; }
+.resv-progress-bar.step-4,
+.resv-progress-bar.is-complete { width: 100%; }
 .resv-steps-indicator {
   display: flex; justify-content: center; gap: 12px; padding: 24px 32px 8px;
 }

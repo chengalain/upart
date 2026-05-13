@@ -25,11 +25,11 @@ export function showPage(page) {
   const isHome = page === 'accueil';
 
   if (newsletter) {
-    newsletter.style.display = isHome ? 'block' : 'none';
+    newsletter.classList.toggle('is-hidden', !isHome);
   }
 
   if (reviews) {
-    reviews.style.display = isHome ? 'block' : 'none';
+    reviews.classList.toggle('is-hidden', !isHome);
   }
 
   const renderer = pageRenderers.get(page);

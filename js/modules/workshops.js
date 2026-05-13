@@ -9,6 +9,38 @@ function getSelectedAtelier() {
   return getReservationState().atelier;
 }
 
+function setModalScrollLock(isLocked) {
+  document.body.classList.toggle('modal-open', isLocked);
+}
+
+function updateReservationProgress(step, { complete = false } = {}) {
+  const progressBar = document.getElementById('resvProgressBar');
+  if (!progressBar) {
+    return;
+  }
+
+  progressBar.classList.remove('step-1', 'step-2', 'step-3', 'step-4', 'is-complete');
+  progressBar.classList.add(`step-${step}`);
+
+  if (complete) {
+    progressBar.classList.add('is-complete');
+  }
+}
+
+function setReservationStepVisibility(activeStep, showDone = false) {
+  for (let index = 1; index <= 4; index += 1) {
+    const stepElement = document.getElementById(`resvStep${index}`);
+    if (stepElement) {
+      stepElement.classList.toggle('is-hidden', index !== activeStep);
+    }
+  }
+
+  const doneElement = document.getElementById('resvStepDone');
+  if (doneElement) {
+    doneElement.classList.toggle('is-hidden', !showDone);
+  }
+}
+
 function renderResvDates() {
   const reservation = getReservationState();
   const atelier = getSelectedAtelier();
@@ -128,7 +160,7 @@ export function openResv(id) {
 
   goResvStep(1);
   document.getElementById('resvModal')?.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  setModalScrollLock(true);
 }
 
 export function closeResv(event, force) {
@@ -139,7 +171,7 @@ export function closeResv(event, force) {
 
   if (force || (event && event.target === modal)) {
     modal.classList.remove('open');
-    document.body.style.overflow = '';
+    setModalScrollLock(false);
   }
 }
 
@@ -173,22 +205,8 @@ export function goResvStep(step) {
 
   reservation.step = step;
 
-  for (let index = 1; index <= 4; index += 1) {
-    const stepElement = document.getElementById(`resvStep${index}`);
-    if (stepElement) {
-      stepElement.style.display = index === step ? 'block' : 'none';
-    }
-  }
-
-  const doneElement = document.getElementById('resvStepDone');
-  if (doneElement) {
-    doneElement.style.display = 'none';
-  }
-
-  const progressBar = document.getElementById('resvProgressBar');
-  if (progressBar) {
-    progressBar.style.width = `${step * 25}%`;
-  }
+  setReservationStepVisibility(step);
+  updateReservationProgress(step);
 
   document.querySelectorAll('.resv-step-dot').forEach((dot) => {
     const dotStep = Number(dot.dataset.step);
@@ -248,15 +266,8 @@ export function fakeLogin() {
 }
 
 export function confirmResv() {
-  for (let index = 1; index <= 4; index += 1) {
-    const stepElement = document.getElementById(`resvStep${index}`);
-    if (stepElement) {
-      stepElement.style.display = 'none';
-    }
-  }
-
-  document.getElementById('resvStepDone')?.style.setProperty('display', 'block');
-  document.getElementById('resvProgressBar')?.style.setProperty('width', '100%');
+  setReservationStepVisibility(null, true);
+  updateReservationProgress(4, { complete: true });
   document.querySelectorAll('.resv-step-dot').forEach((dot) => dot.classList.add('done'));
 }
 

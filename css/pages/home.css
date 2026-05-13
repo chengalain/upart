@@ -205,4 +205,6 @@
 .newsletter-msg {
   margin-top: 16px; font-size: 0.85rem; color: var(--green-light); min-height: 20px;
 }
+.newsletter-msg.is-error { color: #E8A58C; }
+.newsletter-msg.is-success { color: var(--green-light); }
 
