@@ -10,17 +10,17 @@ export function initReviewsMarquee() {
 
 export function initStaggeredAnimations() {
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.style.animationDelay = `${index * 0.08}s`;
-        entry.target.style.animation = 'fadeUp 0.5s ease forwards';
+        entry.target.classList.remove('reveal-pending');
+        entry.target.classList.add('reveal-in');
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.tuto-card, .atelier-card, .creation-item, .product-card').forEach((element) => {
-    element.style.opacity = '0';
+    element.classList.add('reveal-pending');
     observer.observe(element);
   });
 }

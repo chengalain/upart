@@ -113,8 +113,7 @@ export function openResv(id) {
     const field = document.getElementById(fieldId);
     if (field) {
       field.value = '';
-      field.style.background = '';
-      field.style.borderColor = '';
+      field.classList.remove('form-field-highlighted');
     }
   });
 
@@ -243,8 +242,7 @@ export function fakeLogin() {
     const field = document.getElementById(fieldId);
     if (field) {
       field.value = value;
-      field.style.background = 'rgba(224,98,122,0.05)';
-      field.style.borderColor = 'var(--accent)';
+      field.classList.add('form-field-highlighted');
     }
   });
 }

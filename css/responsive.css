@@ -1,0 +1,40 @@
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { max-width: 500px; }
+  .hero-text h1 { font-size: 3.2rem; }
+  .footer-content { grid-template-columns: 1fr 1fr; }
+  .creations-masonry { columns: 2; }
+}
+@media (max-width: 768px) {
+  nav { padding: 14px 24px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: absolute;
+    top: 100%; left: 0; right: 0; background: var(--bg);
+    padding: 24px; gap: 20px; border-bottom: 1px solid rgba(26,26,26,0.08);
+  }
+  section { padding: 100px 24px 60px; }
+  .hero { padding: 80px 24px 40px; }
+  .hero-text h1 { font-size: 2.6rem; }
+  .hero-visual { grid-template-columns: 1fr 1fr; max-width: 100%; }
+  .hero-stats { gap: 24px; }
+  .section-title { font-size: 2.2rem; }
+  .tutos-grid { grid-template-columns: 1fr; }
+  .ateliers-grid { grid-template-columns: 1fr; }
+  .boutique-grid { grid-template-columns: 1fr 1fr; }
+  .creations-masonry { columns: 1; }
+  .contact-container { grid-template-columns: 1fr; }
+  .newsletter-wrapper { padding: 60px 24px; }
+  .newsletter-form-wrap { flex-direction: column; }
+  .footer-content { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 8px; }
+}
+@media (max-width: 480px) {
+  .hero-text h1 { font-size: 2rem; }
+  .boutique-grid { grid-template-columns: 1fr; }
+  .hero-visual { gap: 10px; }
+  .hero-card:nth-child(2) { margin-top: 20px; }
+  .hero-card:nth-child(3) { margin-top: -20px; }
+}

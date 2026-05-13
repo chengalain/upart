@@ -1,20 +1,8 @@
 import { state } from '../core/state.js';
 import { fakeComments } from '../data/comments.js';
 
-function getGradient(backgroundKey) {
-  const gradients = {
-    h1: 'linear-gradient(135deg, #D5D5D5, #333333)',
-    h2: 'linear-gradient(135deg, #F7C4CF, #E0627A)',
-    h3: 'linear-gradient(135deg, #4A4A4A, #1A1A1A)',
-    h4: 'linear-gradient(135deg, #F2A0B0, #D44D67)',
-    h5: 'linear-gradient(135deg, #E0E0E0, #2A2A2A)',
-    h6: 'linear-gradient(135deg, #F7D4DC, #E8839A)',
-    h7: 'linear-gradient(135deg, #3A3A3A, #1A1A1A)',
-    h8: 'linear-gradient(135deg, #F0B8C4, #E0627A)',
-    h9: 'linear-gradient(135deg, #D5D5D5, #4A4A4A)',
-  };
-
-  return gradients[backgroundKey] || gradients.h1;
+function getBackgroundClass(backgroundKey) {
+  return `bg-${backgroundKey}`;
 }
 
 export function openCreation(element) {
@@ -26,7 +14,7 @@ export function openCreation(element) {
 
   const modalImage = document.getElementById('modalImage');
   if (modalImage) {
-    modalImage.style.background = getGradient(dataset.bg);
+    modalImage.className = `modal-image ${getBackgroundClass(dataset.bg || 'h1')}`;
     modalImage.textContent = dataset.emoji || '';
   }
 
@@ -130,7 +118,7 @@ export function addComment() {
   const comment = document.createElement('div');
   comment.className = 'comment';
   comment.innerHTML = `
-    <div class="comment-avatar" style="background:var(--accent);">T</div>
+    <div class="comment-avatar comment-avatar-self">T</div>
     <div class="comment-body">
       <div class="comment-author">Toi</div>
       <div class="comment-text">${text}</div>

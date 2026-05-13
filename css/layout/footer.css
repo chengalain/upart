@@ -1,0 +1,28 @@
+/* ============ FOOTER ============ */
+.site-footer {
+  background: var(--text); color: rgba(255,255,255,0.7); padding: 64px 48px 32px;
+}
+.footer-content {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+  max-width: 1300px; margin: 0 auto;
+}
+.footer-brand h3 {
+  font-family: 'Playfair Display', serif; font-size: 1.4rem; color: white; margin-bottom: 12px;
+}
+.footer-brand h3 span { color: var(--accent-light); }
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 300px; }
+.footer-col h4 {
+  color: white; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.footer-col a {
+  display: block; color: rgba(255,255,255,0.6); text-decoration: none;
+  font-size: 0.85rem; margin-bottom: 10px; transition: var(--transition);
+}
+.footer-col a:hover { color: var(--accent-light); }
+.footer-bottom {
+  max-width: 1300px; margin: 48px auto 0; padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex; justify-content: space-between; font-size: 0.78rem;
+}
+

@@ -1,0 +1,49 @@
+/* ============ NAV ============ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 48px;
+  background: rgba(245,245,245,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(26,26,26,0.06);
+  transition: var(--transition);
+}
+nav.scrolled { padding: 12px 48px; background: rgba(245,245,245,0.95); }
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700; color: var(--text);
+  letter-spacing: -0.5px; cursor: pointer;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  text-decoration: none; color: var(--text-muted); font-size: 0.9rem;
+  font-weight: 500; transition: var(--transition); position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0;
+  height: 2px; background: var(--accent); transition: var(--transition);
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.active::after { width: 100%; }
+.nav-icons { display: flex; gap: 8px; align-items: center; }
+.nav-icon-btn {
+  position: relative; width: 40px; height: 40px; border-radius: 50%;
+  border: none; background: transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text); transition: var(--transition);
+}
+.nav-icon-btn:hover { background: rgba(26,26,26,0.06); color: var(--accent); }
+.nav-badge {
+  position: absolute; top: 2px; right: 2px; min-width: 18px; height: 18px;
+  border-radius: 50%; background: var(--accent); color: white;
+  font-size: 0.65rem; font-weight: 700; display: flex;
+  align-items: center; justify-content: center; padding: 0 4px;
+  transition: var(--transition);
+}
+.nav-badge.empty { opacity: 0; transform: scale(0); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { width: 24px; height: 2px; background: var(--text); transition: var(--transition); }
+

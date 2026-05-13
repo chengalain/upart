@@ -7,17 +7,8 @@ export function setShopNavigator(handler) {
   showPageHandler = typeof handler === 'function' ? handler : () => {};
 }
 
-function getProductGradient(backgroundKey) {
-  const gradients = {
-    p1: 'linear-gradient(135deg, #F7C4CF, #E0627A)',
-    p2: 'linear-gradient(135deg, #D5D5D5, #333333)',
-    p3: 'linear-gradient(135deg, #F2A0B0, #D44D67)',
-    p4: 'linear-gradient(135deg, #4A4A4A, #1A1A1A)',
-    p5: 'linear-gradient(135deg, #F7D4DC, #E8839A)',
-    p6: 'linear-gradient(135deg, #E0E0E0, #2A2A2A)',
-  };
-
-  return gradients[backgroundKey] || gradients.p1;
+function getBackgroundClass(backgroundKey) {
+  return `bg-${backgroundKey}`;
 }
 
 function findProduct(productId) {
@@ -50,7 +41,7 @@ export function renderBoutique() {
 
     return `
       <div class="product-card" data-action="open-product" data-id="${product.id}" role="button" tabindex="0">
-        <div class="product-img" style="background:${getProductGradient(product.bg)};height:340px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;">${product.emoji}</div>
+        <div class="product-img ${product.bg}">${product.emoji}</div>
         ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
         <button class="product-wishlist" type="button" data-action="toggle-fav" data-id="${product.id}">${isFavorite ? '♥' : '♡'}</button>
         <div class="product-body">
@@ -78,11 +69,11 @@ export function openProduct(productId) {
 
   detail.innerHTML = `
     <div class="pd-gallery">
-      <div class="pd-main-img" style="background:${getProductGradient(product.bg)}">${product.emoji}</div>
+      <div class="pd-main-img ${getBackgroundClass(product.bg)}">${product.emoji}</div>
       <div class="pd-thumbs">
-        <div class="pd-thumb active" style="background:${getProductGradient(product.bg)}">${product.emoji}</div>
-        <div class="pd-thumb" style="background:var(--bg);font-size:1.2rem;">📐</div>
-        <div class="pd-thumb" style="background:var(--bg);font-size:1.2rem;">🏷️</div>
+        <div class="pd-thumb active ${getBackgroundClass(product.bg)}">${product.emoji}</div>
+        <div class="pd-thumb pd-thumb-meta">📐</div>
+        <div class="pd-thumb pd-thumb-meta">🏷️</div>
       </div>
     </div>
     <div class="pd-info">
@@ -168,7 +159,7 @@ export function renderCart() {
 
   content.innerHTML = items.map((product) => `
       <div class="cart-item">
-        <div class="cart-item-img" style="background:${getProductGradient(product.bg)}">${product.emoji}</div>
+        <div class="cart-item-img ${getBackgroundClass(product.bg)}">${product.emoji}</div>
         <div class="cart-item-info">
           <h3>${product.name}</h3>
           <p>${product.technique}</p>
@@ -231,8 +222,8 @@ export function renderFavorites() {
 
   content.innerHTML = items.map((product) => `
       <div class="fav-item">
-        <div class="fav-item-img" style="background:${getProductGradient(product.bg)}">${product.emoji}</div>
-        <div class="fav-item-info" style="cursor:pointer" data-action="open-product" data-id="${product.id}" role="button" tabindex="0">
+        <div class="fav-item-img ${getBackgroundClass(product.bg)}">${product.emoji}</div>
+        <div class="fav-item-info" data-action="open-product" data-id="${product.id}" role="button" tabindex="0">
           <h3>${product.name}</h3>
           <p>${product.technique}</p>
         </div>
