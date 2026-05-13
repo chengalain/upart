@@ -21,14 +21,6 @@
 .tuto-thumb-bg.t4 { background: linear-gradient(135deg, #4A4A4A, #2A2A2A); }
 .tuto-thumb-bg.t5 { background: linear-gradient(135deg, #F7D4DC, #E8839A); }
 .tuto-thumb-bg.t6 { background: linear-gradient(135deg, #E0E0E0, #333333); }
-.tuto-level {
-  position: absolute; top: 12px; right: 12px; background: white;
-  padding: 4px 12px; border-radius: 50px; font-size: 0.7rem;
-  font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-}
-.tuto-level.easy { color: var(--green); }
-.tuto-level.medium { color: #C49A3E; }
-.tuto-level.hard { color: var(--accent); }
 .tuto-play {
   position: absolute; bottom: 16px; right: 16px;
   width: 44px; height: 44px; border-radius: 50%; background: white;
