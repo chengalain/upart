@@ -49,10 +49,10 @@ export function renderBoutique() {
     const isFavorite = state.favorites.includes(product.id);
 
     return `
-      <div class="product-card" onclick="openProduct(${product.id})">
+      <div class="product-card" data-action="open-product" data-id="${product.id}" role="button" tabindex="0">
         <div class="product-img" style="background:${getProductGradient(product.bg)};height:340px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;">${product.emoji}</div>
         ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
-        <button class="product-wishlist" onclick="toggleFav(event, ${product.id})">${isFavorite ? '♥' : '♡'}</button>
+        <button class="product-wishlist" type="button" data-action="toggle-fav" data-id="${product.id}">${isFavorite ? '♥' : '♡'}</button>
         <div class="product-body">
           <h3>${product.name}</h3>
           <div class="product-technique">${product.technique}</div>
@@ -60,7 +60,7 @@ export function renderBoutique() {
             <div class="product-price">${product.price}€</div>
             <div class="product-sizes">${product.sizes.join(', ')}</div>
           </div>
-          <button class="btn-cart" onclick="addToCart(event, ${product.id})">Ajouter au panier</button>
+          <button class="btn-cart" type="button" data-action="add-to-cart" data-id="${product.id}">Ajouter au panier</button>
         </div>
       </div>`;
   }).join('');
@@ -86,7 +86,7 @@ export function openProduct(productId) {
       </div>
     </div>
     <div class="pd-info">
-      <button class="pd-back" onclick="showPage('boutique')">← Retour à la boutique</button>
+      <button class="pd-back" type="button" data-page="boutique">← Retour à la boutique</button>
       ${product.badge ? `<div class="pd-badge">${product.badge}</div>` : ''}
       <h1 class="pd-title">${product.name}</h1>
       <div class="pd-technique">${product.technique} — par ${product.artisan}</div>
@@ -101,12 +101,12 @@ export function openProduct(productId) {
       <div class="pd-sizes">
         <div class="pd-sizes-label">Taille</div>
         <div class="pd-sizes-list">
-          ${product.sizes.map((size, index) => `<button class="pd-size${index === 0 ? ' selected' : ''}" onclick="selectSize(this)">${size}</button>`).join('')}
+          ${product.sizes.map((size, index) => `<button class="pd-size${index === 0 ? ' selected' : ''}" type="button" data-action="select-size">${size}</button>`).join('')}
         </div>
       </div>
       <div class="pd-actions">
-        <button class="pd-btn-cart" onclick="addToCart(event, ${product.id})">Ajouter au panier</button>
-        <button class="pd-btn-fav${isFavorite ? ' faved' : ''}" onclick="toggleFavDetail(this, ${product.id})">${isFavorite ? '♥' : '♡'}</button>
+        <button class="pd-btn-cart" type="button" data-action="add-to-cart" data-id="${product.id}">Ajouter au panier</button>
+        <button class="pd-btn-fav${isFavorite ? ' faved' : ''}" type="button" data-action="toggle-fav-detail" data-id="${product.id}">${isFavorite ? '♥' : '♡'}</button>
       </div>
     </div>`;
 
@@ -159,7 +159,7 @@ export function renderCart() {
   }
 
   if (state.cart.length === 0) {
-    content.innerHTML = `<div class="cart-empty"><span>🛒</span>Ton panier est vide.<br><br><button class="btn-primary" onclick="showPage('boutique')">Voir la boutique</button></div>`;
+    content.innerHTML = `<div class="cart-empty"><span>🛒</span>Ton panier est vide.<br><br><button class="btn-primary" type="button" data-page="boutique">Voir la boutique</button></div>`;
     return;
   }
 
@@ -174,7 +174,7 @@ export function renderCart() {
           <p>${product.technique}</p>
         </div>
         <div class="cart-item-price">${product.price}€</div>
-        <button class="cart-item-remove" onclick="removeFromCart(${product.id})">✕</button>
+        <button class="cart-item-remove" type="button" data-action="remove-from-cart" data-id="${product.id}">✕</button>
       </div>`).join('') + `
       <div class="cart-total">
         <span class="cart-total-label">Total</span>
@@ -223,7 +223,7 @@ export function renderFavorites() {
   }
 
   if (state.favorites.length === 0) {
-    content.innerHTML = `<div class="fav-empty"><span>♡</span>Aucun favori pour le moment.<br><br><button class="btn-primary" onclick="showPage('boutique')">Découvrir la boutique</button></div>`;
+    content.innerHTML = `<div class="fav-empty"><span>♡</span>Aucun favori pour le moment.<br><br><button class="btn-primary" type="button" data-page="boutique">Découvrir la boutique</button></div>`;
     return;
   }
 
@@ -232,13 +232,13 @@ export function renderFavorites() {
   content.innerHTML = items.map((product) => `
       <div class="fav-item">
         <div class="fav-item-img" style="background:${getProductGradient(product.bg)}">${product.emoji}</div>
-        <div class="fav-item-info" style="cursor:pointer" onclick="openProduct(${product.id})">
+        <div class="fav-item-info" style="cursor:pointer" data-action="open-product" data-id="${product.id}" role="button" tabindex="0">
           <h3>${product.name}</h3>
           <p>${product.technique}</p>
         </div>
         <div class="fav-item-price">${product.price}€</div>
-        <button class="fav-item-cartbtn" onclick="addToCart(event, ${product.id})">Ajouter au panier</button>
-        <button class="fav-item-remove" onclick="removeFromFav(${product.id})">✕</button>
+        <button class="fav-item-cartbtn" type="button" data-action="add-to-cart" data-id="${product.id}">Ajouter au panier</button>
+        <button class="fav-item-remove" type="button" data-action="remove-from-fav" data-id="${product.id}">✕</button>
       </div>`).join('');
 }
 

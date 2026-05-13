@@ -23,7 +23,7 @@ function renderResvDates() {
     const isSelected = reservation.date === index ? ' selected' : '';
 
     return `
-      <div class="resv-date-option${isSelected}" onclick="selectDate(${index})">
+      <div class="resv-date-option${isSelected}" data-action="select-date" data-index="${index}" role="button" tabindex="0">
         <div class="resv-date-left">
           <div class="resv-date-icon">📅</div>
           <div class="resv-date-info">
@@ -89,7 +89,7 @@ export function renderAteliers() {
           </div>
           <div class="atelier-footer">
             <div class="atelier-price">${atelier.price}€ <small>/pers</small></div>
-            <button class="btn-sm" onclick="openResv(${atelier.id})">Réserver</button>
+            <button class="btn-sm" type="button" data-action="open-resv" data-id="${atelier.id}">Réserver</button>
           </div>
         </div>
       </div>`;
