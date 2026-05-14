@@ -119,7 +119,7 @@ export function renderAteliers() {
         })}
         <div class="atelier-header">
           <div class="atelier-date"><div class="day">${day}</div><div class="month">${month}</div></div>
-          <span class="atelier-badge ${atelier.type === 'online' ? 'online' : 'offline'}">${atelier.type === 'online' ? 'En ligne' : 'Présentiel'}</span>
+          <span class="atelier-badge ${atelier.type === 'online' ? 'online' : 'offline'}">${atelier.type === 'online' ? 'Distanciel' : 'Présentiel'}</span>
         </div>
         <div class="atelier-body">
           <h3>${atelier.title}</h3>
