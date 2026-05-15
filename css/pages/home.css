@@ -22,7 +22,7 @@
   grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
   max-width: 1300px; margin: 0 auto; width: 100%;
 }
-.hero-text { animation: slideRight 0.8s ease forwards; }
+.hero-text {}
 .hero-text h1 {
   font-family: 'Playfair Display', serif; font-size: 4.2rem; font-weight: 700;
   line-height: 1.1; margin-bottom: 24px; letter-spacing: -1px;
@@ -52,7 +52,6 @@
 
 .hero-visual {
   display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-  animation: fadeIn 0.8s ease 0.2s forwards; opacity: 0;
 }
 .hero-card {
   border-radius: var(--radius); overflow: hidden; position: relative;
