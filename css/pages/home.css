@@ -59,6 +59,13 @@
   aspect-ratio: 3/4; background: transparent;
   box-shadow: var(--shadow); transition: var(--transition);
 }
+.hero-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.08) 0%, rgba(26, 26, 26, 0.2) 45%, rgba(26, 26, 26, 0.78) 100%);
+  pointer-events: none;
+}
 .hero-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
 .hero-card:nth-child(2) { margin-top: 40px; }
 .hero-card:nth-child(3) { margin-top: -40px; }
@@ -68,7 +75,28 @@
   background: transparent;
 }
 .hero-card-label {
-  display: none;
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 248, 244, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  color: white;
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 30px rgba(26, 26, 26, 0.16);
+  pointer-events: none;
 }
 
 /* Stats */
