@@ -31,7 +31,7 @@ body {
 
 /* ============ SECTIONS ============ */
 section { padding: 120px 48px 80px; }
-.section-hidden { display: none !important; }
+.section-hidden { display: block !important; }
 .section-visible {}
 
 @keyframes fadeUp {
