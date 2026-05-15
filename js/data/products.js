@@ -58,7 +58,7 @@ export const products = [
   {
     id: 5,
     name: 'Veste Jean Coquette',
-    technique: 'Peinture textile et appliques',
+    technique: 'Peinture textile',
     price: 92,
     image: 'assets/images/products/veste_jean_coquette.png',
     bg: 'p5',
@@ -86,7 +86,7 @@ export const products = [
   {
     id: 7,
     name: 'Corset Coquette Fleuri',
-    technique: 'Corseterie romantique',
+    technique: 'Corset romantique',
     price: 58,
     image: 'assets/images/products/corset_coquette.png',
     bg: 'p7',
@@ -99,7 +99,7 @@ export const products = [
   },
   {
     id: 8,
-    name: 'Jean Upcycler Manifesto',
+    name: 'Jean Upcycler',
     technique: 'Patchwork denim et impression',
     price: 96,
     image: 'assets/images/products/jean_upsicler.png',
