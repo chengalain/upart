@@ -107,6 +107,10 @@
   transition: opacity 0.25s ease, transform 0.5s ease;
 }
 
+.media-image-contain {
+  object-fit: contain;
+}
+
 .media-frame.is-loaded .media-image {
   opacity: 1;
 }
@@ -175,6 +179,8 @@
 .bg-p4 { background: linear-gradient(135deg, #4A4A4A, #1A1A1A); }
 .bg-p5 { background: linear-gradient(135deg, #F7D4DC, #E8839A); }
 .bg-p6 { background: linear-gradient(135deg, #E0E0E0, #2A2A2A); }
+.bg-p7 { background: linear-gradient(135deg, #F8E6E9, #E7B8C4); }
+.bg-p8 { background: linear-gradient(135deg, #5C5C5C, #151515); }
 .bg-h1 { background: linear-gradient(135deg, #D5D5D5, #333333); }
 .bg-h2 { background: linear-gradient(135deg, #F7C4CF, #E0627A); }
 .bg-h3 { background: linear-gradient(135deg, #4A4A4A, #1A1A1A); }

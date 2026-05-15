@@ -13,9 +13,10 @@ function getBackgroundClass(backgroundKey) {
   return `bg-${backgroundKey}`;
 }
 
-function renderProductMedia(product, wrapperClass, compact = false) {
+function renderProductMedia(product, wrapperClass, compact = false, imageClass = '') {
   return renderMediaMarkup({
     wrapperClass,
+    imageClass,
     src: product.image,
     alt: product.name,
     compact,
@@ -82,12 +83,7 @@ export function openProduct(productId) {
 
   detail.innerHTML = `
     <div class="pd-gallery">
-      ${renderProductMedia(product, `pd-main-img ${getBackgroundClass(product.bg)}`)}
-      <div class="pd-thumbs">
-        ${renderProductMedia(product, `pd-thumb active ${getBackgroundClass(product.bg)}`, true)}
-        <div class="pd-thumb pd-thumb-meta">📐</div>
-        <div class="pd-thumb pd-thumb-meta">🏷️</div>
-      </div>
+      ${renderProductMedia(product, `pd-main-img ${getBackgroundClass(product.bg)}`, false, 'media-image-contain')}
     </div>
     <div class="pd-info">
       <button class="pd-back" type="button" data-page="boutique">← Retour à la boutique</button>

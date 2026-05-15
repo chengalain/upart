@@ -15,7 +15,13 @@ export function hydrateMediaFrames(root = document) {
       return;
     }
 
-    const markLoaded = () => frame.classList.add('is-loaded');
+    const markLoaded = () => {
+      if (image.naturalWidth > 0 && image.naturalHeight > 0) {
+        frame.style.setProperty('--media-ratio', `${image.naturalWidth} / ${image.naturalHeight}`);
+      }
+
+      frame.classList.add('is-loaded');
+    };
     const markPending = () => frame.classList.remove('is-loaded');
 
     image.dataset.mediaBound = 'true';
