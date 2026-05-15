@@ -185,21 +185,26 @@
   .reviews-score-number { font-size: 2.2rem; }
   .review-card { min-width: 300px; max-width: 300px; }
   /* Disable auto-scroll on mobile, enable swipe */
-  .reviews-track {
-    animation: none !important;
-    scroll-snap-type: x mandatory;
-    overflow-x: auto; -webkit-overflow-scrolling: touch;
-    padding: 0 24px; gap: 16px;
-  }
   .reviews-marquee {
     mask-image: none; -webkit-mask-image: none;
-    overflow: visible;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 24px;
+    padding: 0 24px 4px;
+    touch-action: pan-x;
+  }
+  .reviews-track {
+    animation: none !important;
+    width: max-content;
+    gap: 16px;
   }
   .review-card {
     scroll-snap-align: center;
   }
-  .reviews-track::-webkit-scrollbar { display: none; }
-  .reviews-track { -ms-overflow-style: none; scrollbar-width: none; }
+  .reviews-marquee::-webkit-scrollbar { display: none; }
+  .reviews-marquee { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
 /* ============ NEWSLETTER ============ */
