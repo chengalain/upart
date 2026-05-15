@@ -18,7 +18,7 @@ export function renderMediaMarkup({ wrapperClass = '', imageClass = '', src = ''
 
   return `
     <div class="${frameClassName}" data-media-frame>
-      <img class="${imageClassName}" src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" data-media-image>
+      <img class="${imageClassName}" src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="eager" data-media-image>
       <div class="${placeholderClassName}" aria-hidden="true">
         <span class="media-placeholder-kicker">Ajoute l'image</span>
         <strong class="media-placeholder-name">${escapeHtml(getFileName(src))}</strong>
