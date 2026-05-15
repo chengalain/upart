@@ -1,7 +1,7 @@
 /* ============ TUTORIELS ============ */
 .tutos-page { background: var(--cream); }
 .tutos-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 28px; max-width: 1300px; margin: 0 auto;
 }
 .tuto-card {
@@ -95,10 +95,11 @@
 /* ============ CREATIONS / COMMUNAUTE ============ */
 .creations-page { background: var(--cream); }
 .creations-masonry {
-  columns: 3; column-gap: 20px; max-width: 1300px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  max-width: 1300px; margin: 0 auto; align-items: start;
 }
 .creation-item {
-  break-inside: avoid; margin-bottom: 20px; border-radius: var(--radius);
+  border-radius: var(--radius);
   overflow: hidden; background: var(--card-bg); box-shadow: var(--shadow);
   transition: var(--transition); cursor: pointer;
 }
